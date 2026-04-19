@@ -28,7 +28,7 @@ def main():
     run = True
 
     # calling the Bird class
-    bird = Bird(bird_img_rect.x, bird_img_rect.y, 0, bird_images_effect, bird_img)
+    bird = Bird(bird_img_rect.x, bird_img_rect.y, bird_images_effect, bird_img)
 
     while run:
         delta_time = clock.tick(FPS) # This is critical to actually create the downfall gravity
