@@ -23,24 +23,31 @@ bird_img_rect.topleft = (WIDTH / 4, HEIGHT / 2)
 # loading the bird on window
 bg_image = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'background.png')).convert(), (WIDTH, HEIGHT))
 
-def main():
-    clock = pygame.time.Clock()
-    run = True
+start_img = pygame.transform.scale(pygame.image.load(os.path.join('Assets/sprites', 'message.png')).convert_alpha(), (WIDTH, HEIGHT))
 
-    # calling the Bird class
-    bird = Bird(bird_img_rect.x, bird_img_rect.y, bird_images_effect, bird_img)
+def main():
+    is_playing = False
+    run = True
+    clock = pygame.time.Clock()
+    bird = Bird(bird_img_rect.x, bird_img_rect.y, bird_images_effect, bird_img) # calling the Bird class
 
     while run:
         delta_time = clock.tick(FPS) # This is critical to actually create the downfall gravity
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
             if event.type == pygame.KEYDOWN:
-                bird.msc_to_climb = bird.CLIMB_DURATION # refreshing the time to ascend
+                if event.key == pygame.K_RETURN:
+                    is_playing = True
 
-        bird.update(delta_time)
-        draw_window(screen, bg_image, bird)
+                if event.key == pygame.K_SPACE:
+                    bird.msc_to_climb = bird.CLIMB_DURATION # refreshing the time to ascend
+
+        if is_playing:
+            bird.update(delta_time)
+        draw_window(screen, is_playing, start_img, bg_image, bird)
 
         # updates the window
         pygame.display.flip()
