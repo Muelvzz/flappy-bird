@@ -1,4 +1,4 @@
-import pygame, math
+import pygame, os
 from random import randint
 
 class Bird(pygame.sprite.Sprite):

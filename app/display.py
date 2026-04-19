@@ -1,6 +1,8 @@
 import pygame
+import os
 
 pygame.init()
+pygame.mixer.init()
 
 def draw_window(screen, is_playing, start_image, bg_image, bird):
     screen.blit(bg_image, (0, 0))
